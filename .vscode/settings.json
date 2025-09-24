@@ -5,7 +5,17 @@
     "*.h": "c",
     "algorithm": "c",
     "complex": "c",
-    "cmath": "c"
+    "cmath": "c",
+    "bit": "c",
+    "bitset": "c",
+    "chrono": "c",
+    "condition_variable": "c",
+    "istream": "c",
+    "limits": "c",
+    "mutex": "c",
+    "ranges": "c",
+    "streambuf": "c",
+    "thread": "c"
 },
   "C_Cpp.intelliSenseEngine": "default",
   "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
