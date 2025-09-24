@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.dbclient-js": "javascript",
+        "bit": "c",
+        "algorithm": "c",
+        "istream": "c",
+        "limits": "c",
+        "ranges": "c",
+        "streambuf": "c"
+    }
+}

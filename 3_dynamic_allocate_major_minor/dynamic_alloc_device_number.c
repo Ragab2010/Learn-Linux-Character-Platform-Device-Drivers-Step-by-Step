@@ -21,6 +21,7 @@ int count=1;
 module_param(count , int , 0644);
 MODULE_PARM_DESC(count, " An integer parameter for count number");
 
+/*this holds the device number*/
 dev_t deviceNumber;
 
 

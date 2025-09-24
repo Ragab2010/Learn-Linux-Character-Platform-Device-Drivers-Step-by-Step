@@ -1,2 +1,0 @@
-/mnt/9b5615c7-dc1f-4742-8d4c-3eebb3e3ef96/linux_trainer/character_device_driver/8_cdev_by_static_allocation/cdev_by_static_allocation.o
-
