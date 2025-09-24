@@ -44,11 +44,17 @@ static dev_t device_number;  // Encodes major and base minor number
 static struct class *myclass = NULL;  // Class used for udev/sysfs integration
 static struct device *mydevices[MAX_DEVICES];  // Pointers to each created device
 
+// Permission types
+#define RDONLY  0x01
+#define WRONLY  0x10
+#define RDWR    0x11
+
 // Per-device structure
 struct msg_device {
     struct cdev mycdev;                     // Character device structure
     char kernel_buffer[MAX_SIZE];          // Fixed-size buffer for each device
     int kernel_buffer_index;               // Tracks how much valid data is in the buffer
+    int permission;  // new field: device-level access permission
 };
 
 // Array holding state for each of our devices
@@ -57,6 +63,24 @@ static struct msg_device msg_devices[MAX_DEVICES];
 // ----------------------
 // FILE OPERATIONS
 // ----------------------
+static int check_permission(int dev_perm, int acc_mode)
+{
+    switch (dev_perm) {
+        case RDWR:
+            return 0;  // allow all
+        case RDONLY:
+            if ((acc_mode & FMODE_WRITE) && !(acc_mode & FMODE_READ))
+                return -EPERM;
+            break;
+        case WRONLY:
+            if ((acc_mode & FMODE_READ) && !(acc_mode & FMODE_WRITE))
+                return -EPERM;
+            break;
+        default:
+            return -EPERM;
+    }
+    return 0;
+}
 
 static int myOpen(struct inode *inode, struct file *file) {
     struct msg_device *my_device;
@@ -64,6 +88,12 @@ static int myOpen(struct inode *inode, struct file *file) {
     // Use container_of to retrieve the struct msg_device from the embedded cdev
     my_device = container_of(inode->i_cdev, struct msg_device, mycdev);
 
+    // Check permission using file->f_mode
+    ret = check_permission(my_device->permission, file->f_mode);
+    if (ret) {
+        pr_err("%s: Permission denied for device\n", __func__);
+        return ret;
+    }
     // Store device-specific data in file->private_data
     file->private_data = my_device;
 
@@ -208,11 +238,14 @@ static int __init multiple_device_init(void) {
             ret = PTR_ERR(mydevices[i]);
             goto cleanup;
         }
-
+        
         // Initialize the character device structure
         memset(&msg_devices[i], 0, sizeof(struct msg_device));
         cdev_init(&msg_devices[i].mycdev, &myfops);
         msg_devices[i].mycdev.owner = THIS_MODULE;
+        
+        //add permission: cycle through RDONLY, WRONLY, RDWR
+        msg_devices[i].permission = (i % 3 == 0) ? RDONLY :(i % 3 == 1) ? WRONLY : RDWR;
 
         // Add device to kernel
         ret = cdev_add(&msg_devices[i].mycdev, temp_dev, 1);
