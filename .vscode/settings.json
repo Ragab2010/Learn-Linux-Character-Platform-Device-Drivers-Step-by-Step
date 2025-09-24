@@ -1,11 +1,17 @@
 {
-    "files.associations": {
-        "*.dbclient-js": "javascript",
-        "bit": "c",
-        "algorithm": "c",
-        "istream": "c",
-        "limits": "c",
-        "ranges": "c",
-        "streambuf": "c"
-    }
+  "files.associations": {
+    "*.dbclient-js": "javascript",
+    "*.c": "c",
+    "*.h": "c",
+    "algorithm": "c",
+    "complex": "c",
+    "cmath": "c"
+},
+  "C_Cpp.intelliSenseEngine": "default",
+  "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+  "breadcrumbs.enabled": true,
+  "editor.codeLens": true,
+  "editor.symbolHighlighting": true,
+  "outline.icons": true,
+  "workbench.editor.enablePreview": false
 }
