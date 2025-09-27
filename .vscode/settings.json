@@ -55,7 +55,9 @@
     "typeinfo": "c",
     "utility": "c",
     "variant": "c",
-    "version": "c"
+    "version": "c",
+    "iostream": "c",
+    "typeindex": "c"
   },
   "C_Cpp.intelliSenseEngine": "default",
   "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
