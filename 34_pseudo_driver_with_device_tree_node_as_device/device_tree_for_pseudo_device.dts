@@ -1,0 +1,20 @@
+pseudo_char@0 {
+    compatible = "mycompany,pseudo-char";
+    reg = <0x0 0x1000>;   /* fake base address */
+    value = <111>;
+    label = "Device_One";
+};
+
+pseudo_char@1 {
+    compatible = "mycompany,pseudo-char";
+    reg = <0x1 0x1000>;
+    value = <222>;
+    label = "Device_Two";
+};
+
+pseudo_char@2 {
+    compatible = "mycompany,pseudo-char";
+    reg = <0x2 0x1000>;
+    value = <333>;
+    label = "Device_Three";
+};
