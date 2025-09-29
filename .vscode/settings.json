@@ -57,7 +57,8 @@
     "variant": "c",
     "version": "c",
     "iostream": "c",
-    "typeindex": "c"
+    "typeindex": "c",
+    "*.dts": "c"
   },
   "C_Cpp.intelliSenseEngine": "default",
   "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
