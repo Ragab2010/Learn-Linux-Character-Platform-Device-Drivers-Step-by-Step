@@ -1,0 +1,29 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "myvendor,pseudo-overlay";
+
+    fragment@0 {
+        target-path = "/";
+        __overlay__ {
+            pseudo0: pseudo@0 {
+                compatible = "myvendor,pseudo";
+                label = "Device0";
+                some-value = <10>;
+            };
+
+            pseudo1: pseudo@1 {
+                compatible = "myvendor,pseudo";
+                label = "Device1";
+                some-value = <20>;
+            };
+
+            pseudo2: pseudo@2 {
+                compatible = "myvendor,pseudo";
+                label = "Device2";
+                some-value = <30>;
+            };
+        };
+    };
+};
