@@ -7,9 +7,9 @@ Now we’ll use the **raw object model** (`kset` + `kobject` + `attribute`).
 
 # 🔹 What we’ll build
 
-* `/sys/mykset/`  → created from `struct kset`.
-* `/sys/mykset/mykobj/` → a `struct kobject`.
-* `/sys/mykset/mykobj/foo` → a custom `struct attribute`.
+* `/sys/kernel/mykset`  → created from `struct kset`.
+* `/sys/kernel/mykset/mykobj/` → a `struct kobject`.
+* `/sys/kernel/mykse/mykobj/foo` → a custom `struct attribute`.
 
 This avoids `class/device` and shows the **core sysfs machinery**.
 
@@ -60,19 +60,19 @@ static int __init mymodule_init(void)
 {
     int ret;
 
-    /* 1. Create a kset (appears as /sys/mykset) */
+    /* 1. Create a kset (appears as /sys/kernel/mykset) */
     example_kset = kset_create_and_add("mykset", NULL, kernel_kobj);
     if (!example_kset)
         return -ENOMEM;
 
-    /* 2. Create a kobject under that kset (appears as /sys/mykset/mykobj) */
+    /* 2. Create a kobject under that kset (appears as /sys/kernel/mykset/mykobj) */
     example_kobj = kobject_create_and_add("mykobj", &example_kset->kobj);
     if (!example_kobj) {
         kset_unregister(example_kset);
         return -ENOMEM;
     }
 
-    /* 3. Add attribute file (/sys/mykset/mykobj/foo) */
+    /* 3. Add attribute file (/sys/kernel/mykset/mykobj/foo) */
     ret = sysfs_create_file(example_kobj, &foo_attr.attr);
     if (ret) {
         kobject_put(example_kobj);
@@ -109,15 +109,15 @@ module_exit(mymodule_exit);
 3. Explore sysfs:
 
    ```bash
-   ls /sys/mykset/mykobj/
+   ls /sys/kernel/mykset/mykobj/
    # should see: foo
    ```
 4. Test:
 
    ```bash
-   cat /sys/mykset/mykobj/foo
-   echo 77 | sudo tee /sys/mykset/mykobj/foo
-   cat /sys/mykset/mykobj/foo
+   cat /sys/kernel/mykset/mykobj/foo
+   echo 77 | sudo tee /sys/kernel/mykset/mykobj/foo
+   cat /sys/kernel/mykset/mykobj/foo
    ```
 5. Remove:
 
@@ -131,7 +131,7 @@ module_exit(mymodule_exit);
 
 | Aspect               | `class/device` API                                         | Raw `kobject/kset` API                              |
 | -------------------- | ---------------------------------------------------------- | --------------------------------------------------- |
-| Directory `/sys/...` | `/sys/class/...` or `/sys/devices/...`                     | Any name you choose (`/sys/mykset/...`)             |
+| Directory `/sys/kernel/...` | `/sys/class/...` or `/sys/devices/...`                     | Any name you choose (`/sys/kernel/mykset/...`)             |
 | Struct used          | `struct class`, `struct device`, `struct device_attribute` | `struct kset`, `struct kobject`, `struct attribute` |
 | Convenience          | High-level helpers, auto cleanup                           | Low-level, manual management                        |
 | Use cases            | Drivers, devices, subsystems                               | Core kernel objects, custom subsystems              |
