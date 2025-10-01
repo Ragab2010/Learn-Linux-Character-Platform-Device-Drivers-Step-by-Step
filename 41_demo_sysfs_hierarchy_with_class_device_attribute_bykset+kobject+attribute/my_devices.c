@@ -40,19 +40,19 @@ static int __init mymodule_init(void)
 {
     int ret;
 
-    /* 1. Create a kset (appears as /sys/mykset) */
+    /* 1. Create a kset (appears as /sys/kernel/mykset) */
     example_kset = kset_create_and_add("mykset", NULL, kernel_kobj);
     if (!example_kset)
         return -ENOMEM;
 
-    /* 2. Create a kobject under that kset (appears as /sys/mykset/mykobj) */
+    /* 2. Create a kobject under that kset (appears as /sys/kernel/mykset/mykobj) */
     example_kobj = kobject_create_and_add("mykobj", &example_kset->kobj);
     if (!example_kobj) {
         kset_unregister(example_kset);
         return -ENOMEM;
     }
 
-    /* 3. Add attribute file (/sys/mykset/mykobj/foo) */
+    /* 3. Add attribute file (/sys/kernel/mykset/mykobj/foo) */
     ret = sysfs_create_file(example_kobj, &foo_attr.attr);
     if (ret) {
         kobject_put(example_kobj);
