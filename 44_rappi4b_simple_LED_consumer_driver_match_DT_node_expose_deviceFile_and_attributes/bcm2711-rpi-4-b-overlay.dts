@@ -1,0 +1,11 @@
+/ {
+    // myled: myled {
+    //     compatible = "ragab,myled";
+    //     gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;  // Use GPIO17 for LED
+    // };
+    myled0: myled@0 {
+    compatible = "ragab,myled";
+    gpios = <&gpio 18 GPIO_ACTIVE_HIGH>;
+    };
+
+};
