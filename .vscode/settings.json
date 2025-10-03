@@ -58,7 +58,13 @@
     "version": "c",
     "iostream": "c",
     "typeindex": "c",
-    "*.dts": "c"
+    "*.dts": "c",
+    "map": "c",
+    "set": "c",
+    "iterator": "c",
+    "netfwd": "c",
+    "initializer_list": "c",
+    "semaphore": "c"
   },
   "C_Cpp.intelliSenseEngine": "default",
   "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
