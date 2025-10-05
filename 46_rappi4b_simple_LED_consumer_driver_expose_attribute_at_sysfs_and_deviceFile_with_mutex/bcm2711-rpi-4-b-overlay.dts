@@ -1,0 +1,4 @@
+mydevice@0 {
+    compatible = "ragab,mydevice";
+    status = "okay";
+};
