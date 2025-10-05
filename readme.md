@@ -195,7 +195,7 @@ MIT License — free for educational and research use.
 Embedded Linux & C/C++ Software Engineer
 📍 Egypt
 📧 [ragabelsayedd@gmail.com](mailto:ragabelsayedd@gmail.com)
-🔗 [LinkedIn](https://bit.ly/3CX6czL) | [GitHub](https://github.com/ragab2010) | [YouTube](https://bit.ly/2oVoSiz)
+🔗 [LinkedIn](https://bit.ly/3CX6czL) | [GitHub](https://github.com/ragab2010) | [YouTube](https://www.youtube.com/@ragabelsayed9713)
 
 ---
 
