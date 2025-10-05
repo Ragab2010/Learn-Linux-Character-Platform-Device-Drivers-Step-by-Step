@@ -1,0 +1,9 @@
+// Add this to your custom overlay, e.g. myled-overlay.dts
+/ {
+    myled@0 {
+        compatible = "ragab,myled";
+        label = "user_led";
+        gpios = <&gpio 17 GPIO_ACTIVE_HIGH>; // GPIO17 as output
+        status = "okay";
+    };
+};
