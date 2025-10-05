@@ -1,9 +1,18 @@
-# Learn Linux Character & Platform Device Drivers – Step by Step
 
-Welcome to this educational repository that **teaches how to write Linux device drivers from scratch** — starting from basic character drivers up to **advanced platform drivers integrated with Device Tree and sysfs**.
+# 🧠 Learn Linux Character & Platform Device Drivers – Step by Step
 
-Each numbered folder represents a **progressive learning step**.  
-You can build, load, and test each driver independently using the provided `Makefile` and `userapp` tools.
+### Author: **Ragab Elsayed**
+
+📍 Embedded Linux & Kernel Developer — Egypt
+
+---
+
+## 🎯 Purpose
+
+This repository is a **progressive, hands-on learning path** that helps you **build deep understanding of Linux device driver development** — starting from basic **character drivers** and gradually advancing to **platform drivers**, **device tree integration**, **sysfs attributes**, and **real hardware interaction** (e.g., GPIO, I2C, LEDs on Raspberry Pi 4B).
+
+It’s designed to teach **concepts incrementally**, showing how kernel subsystems interact:
+`cdev`, `class`, `device`, `platform_device`, `platform_driver`, `sysfs`, `DT overlay`, and more.
 
 ---
 
