@@ -124,3 +124,83 @@ Each subdirectory contains a `Makefile` that builds the module:
 ```bash
 make
 sudo insmod <module_name>.ko
+````
+
+To remove:
+
+```bash
+sudo rmmod <module_name>
+```
+
+For user applications (if present):
+
+```bash
+cd userapp
+gcc userapp.c -o userapp
+./userapp
+```
+
+---
+
+## 🧩 Example: Testing Platform Driver with Device Tree Overlay
+
+```bash
+# Compile device tree overlay
+dtc -@ -I dts -O dtb -o pseudo-overlay.dtbo pseudo-overlay.dts
+
+# Apply overlay at runtime
+sudo dtoverlay pseudo-overlay.dtbo
+
+# Load the driver
+sudo insmod pseudo_driver.ko
+
+# Check logs
+dmesg | tail
+```
+
+---
+
+## 📚 Visual Learning Aids
+
+Several modules (e.g. 35, 36, 41) include Markdown diagrams showing:
+
+* How **Device Tree → Platform Device → Driver Probe** flow works.
+* How **overlay injection** dynamically creates new devices.
+* How `/sys`, `/dev`, and `/proc` entries are related.
+
+---
+
+## 💡 Tips for Learners
+
+* Start from folder `1_...` and move sequentially.
+* Read all inline comments — they are **heavily documented** for clarity.
+* After building, explore `/sys/class/`, `/sys/devices/platform/`, and `/dev/` to observe kernel object creation.
+* Always inspect logs:
+
+  ```bash
+  dmesg | tail -n 30
+  ```
+
+---
+
+## 📖 License
+
+MIT License — free for educational and research use.
+
+---
+
+## 👨‍💻 Author
+
+**Ragab Elsayed**
+Embedded Linux & C/C++ Software Engineer
+📍 Egypt
+📧 [ragabelsayedd@gmail.com](mailto:ragabelsayedd@gmail.com)
+🔗 [LinkedIn](https://bit.ly/3CX6czL) | [GitHub](https://github.com/ragab2010) | [YouTube](https://bit.ly/2oVoSiz)
+
+---
+
+> *“The best way to learn Linux drivers is not by reading — it’s by **building one layer at a time**, and this repository does exactly that.”*
+
+```
+
+---
